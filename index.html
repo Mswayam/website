@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happiest Birthday Diya ❤️</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fff0f5;
+            color: #7c173d;
+            overflow-x: hidden;
+        }
+
+        button {
+            font-family: inherit;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+            min-height: 100svh;
+            width: 100%;
+            padding: 35px 20px;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page.active {
+            display: flex;
+            animation: pageEnter .8s ease;
+        }
+
+        @keyframes pageEnter {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FLOATING HEARTS */
+
+        #heart-container {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -40px;
+            animation: floating linear forwards;
+            opacity: .8;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 0;
+            }
+
+            15% {
+                opacity: .9;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* BUTTONS */
+
+        .btn {
+            border: none;
+            background: linear-gradient(45deg, #ff3f78, #ff8cae);
+            color: white;
+            padding: 15px 32px;
+            min-height: 48px;
+            font-size: 15px;
+            border-radius: 50px;
+            box-shadow: 0 7px 25px #ed5c8c66;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px) scale(1.04);
+        }
+
+        .back {
+            background: transparent;
+            border: 2px solid #e83f75;
+            color: #b32054;
+            padding: 12px 25px;
+            min-height: 48px;
+            border-radius: 40px;
+            transition: .3s;
+        }
+
+        .back:hover {
+            background: #e83f75;
+            color: white;
+        }
+
+        /* PAGE 1 */
+
+        #page1 {
+            background: linear-gradient(135deg,
+                    #ffdae7,
+                    #ff8cae,
+                    #ff4f78);
+            text-align: center;
+        }
+
+        .intro {
+            position: relative;
+            z-index: 2;
+            animation: zoom 1.2s ease;
+        }
+
+        .intro .small {
+            font-size: 16px;
+            letter-spacing: 4px;
+            color: #9b1647;
+        }
+
+        .intro h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(55px, 10vw, 100px);
+            color: white;
+            line-height: 1.2;
+            margin: 20px 0;
+            text-shadow: 0 0 20px #e91e63;
+            animation: heartbeat 2s infinite;
+        }
+
+        .intro p {
+            color: #8c1642;
+            margin-bottom: 30px;
+        }
+
+        .sparkle {
+            position: absolute;
+            font-size: 30px;
+            animation: sparkle 3s infinite alternate;
+        }
+
+        .s1 {
+            top: 15%;
+            left: 15%;
+        }
+
+        .s2 {
+            top: 20%;
+            right: 15%;
+        }
+
+        .s3 {
+            bottom: 20%;
+            left: 20%;
+        }
+
+        .s4 {
+            bottom: 15%;
+            right: 20%;
+        }
+
+        @keyframes sparkle {
+            from {
+                transform: scale(.6) rotate(0);
+                opacity: .4;
+            }
+
+            to {
+                transform: scale(1.4) rotate(40deg);
+                opacity: 1;
+            }
+        }
+
+        @keyframes heartbeat {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.04);
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                opacity: 0;
+                transform: scale(.6);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* PAGE 2 : LETTER + ONE PHOTO */
+
+        #page2 {
+            background: linear-gradient(135deg,
+                    #fff0f5,
+                    #ffd0df);
+        }
+
+        .letter-container {
+            max-width: 1050px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 45px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .letter {
+            flex: 1;
+            animation: leftIn 1s ease;
+        }
+
+        .letter h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(42px, 6vw, 62px);
+            color: #df3268;
+            margin-bottom: 20px;
+        }
+
+        .letter p {
+            font-size: 15px;
+            line-height: 2;
+            color: #75213f;
+        }
+
+        .letter .sign {
+            font-family: 'Dancing Script', cursive;
+            font-size: 30px;
+            color: #e52d69;
+            margin-top: 15px;
+        }
+
+        .main-photo {
+            flex: 1;
+            max-width: 400px;
+            animation: rightIn 1s ease;
+        }
+
+        .main-photo img {
+            display: block;
+            width: 100%;
+            height: 430px;
+            object-fit: cover;
+            border: 9px solid white;
+            border-radius: 25px;
+            box-shadow: 0 10px 35px #bd306a55;
+            cursor: pointer;
+            transition: .4s;
+        }
+
+        .main-photo img:hover {
+            transform: scale(1.04) rotate(2deg);
+        }
+
+        .photo-caption {
+            text-align: center;
+            color: #d52c66;
+            font-size: 14px;
+            margin-top: 12px;
+        }
+
+        @keyframes leftIn {
+            from {
+                opacity: 0;
+                transform: translateX(-70px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes rightIn {
+            from {
+                opacity: 0;
+                transform: translateX(70px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* PAGE 3 : THREE PHOTOS */
+
+        #page3 {
+            background: linear-gradient(135deg,
+                    #ffe3ed,
+                    #ffb3cb);
+        }
+
+        .gallery-container {
+            max-width: 1050px;
+            width: 100%;
+            text-align: center;
+            z-index: 2;
+        }
+
+        .gallery-container h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(45px, 7vw, 70px);
+            color: #d92765;
+            margin-bottom: 10px;
+        }
+
+        .gallery-container .subtitle {
+            color: #842342;
+            margin-bottom: 35px;
+            font-size: 14px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .gallery img {
+            display: block;
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border: 7px solid white;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px #bd306a40;
+            transition: .4s;
+            animation: photoIn .8s ease both;
+        }
+
+        .gallery img:nth-child(2) {
+            animation-delay: .2s;
+        }
+
+        .gallery img:nth-child(3) {
+            animation-delay: .4s;
+        }
+
+        .gallery img:hover {
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 12px 30px #e52d6980;
+        }
+
+        @keyframes photoIn {
+            from {
+                opacity: 0;
+                transform: translateY(35px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* NAVIGATION */
+
+        .navigation {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* PAGE 4 : FINAL SURPRISE */
+
+        #page4 {
+            background: linear-gradient(135deg,
+                    #ffdae7,
+                    #ff729b,
+                    #e92f69);
+            text-align: center;
+        }
+
+        .final-content {
+            max-width: 700px;
+            width: 100%;
+            z-index: 2;
+            animation: zoom 1s ease;
+        }
+
+        .final-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(50px, 9vw, 85px);
+            color: white;
+            text-shadow: 0 0 20px #b70f4c;
+            margin-bottom: 20px;
+        }
+
+        .final-content p {
+            color: #741333;
+            font-size: 16px;
+            line-height: 2;
+            margin-bottom: 25px;
+        }
+
+        .gift {
+            font-size: 80px;
+            cursor: pointer;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+            transition: .4s;
+            padding: 10px;
+        }
+
+        .gift:hover {
+            transform: rotate(-15deg) scale(1.2);
+        }
+
+        .hidden-message {
+            display: none;
+            background: #fff0f5;
+            color: #a51e50;
+            border-radius: 25px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 500px;
+            line-height: 2;
+            animation: zoom .7s ease;
+        }
+
+        .hidden-message.show {
+            display: block;
+        }
+
+        .hidden-message h2 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 38px;
+            margin-bottom: 10px;
+        }
+
+        /* MOBILE RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .page {
+                padding: 30px 16px;
+            }
+
+            /* PAGE 1 */
+
+            .intro h1 {
+                font-size: 58px;
+            }
+
+            .intro .small {
+                font-size: 13px;
+                letter-spacing: 2px;
+            }
+
+            .sparkle {
+                font-size: 22px;
+            }
+
+            /* PAGE 2 */
+
+            .letter-container {
+                flex-direction: column;
+                gap: 25px;
+            }
+
+            .letter {
+                width: 100%;
+            }
+
+            .letter h1 {
+                font-size: 45px;
+                text-align: center;
+            }
+
+            .letter p {
+                font-size: 14px;
+                line-height: 1.9;
+                text-align: center;
+            }
+
+            .letter .sign {
+                text-align: center;
+            }
+
+            .main-photo {
+                width: 100%;
+                max-width: 340px;
+            }
+
+            .main-photo img {
+                height: 330px;
+            }
+
+            /* PAGE 3 */
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 18px;
+                max-width: 400px;
+                margin: auto;
+            }
+
+            .gallery img {
+                height: auto;
+                aspect-ratio: 4 / 3;
+            }
+
+            .gallery-container .subtitle {
+                margin-bottom: 25px;
+            }
+
+            .navigation button {
+                padding: 12px 17px;
+                font-size: 13px;
+            }
+
+            /* PAGE 4 */
+
+            .final-content p {
+                font-size: 14px;
+                line-height: 1.9;
+            }
+        }
+
+        /* SMALL PHONES */
+
+        @media (max-width: 380px) {
+
+            .intro h1 {
+                font-size: 49px;
+            }
+
+            .main-photo img {
+                height: 280px;
+            }
+        }
+
+        /* REDUCED MOTION */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="heart-container"></div>
+
+    <!-- PAGE 1 -->
+
+    <section class="page active" id="page1">
+
+        <span class="sparkle s1">✨</span>
+        <span class="sparkle s2">💗</span>
+        <span class="sparkle s3">🎀</span>
+        <span class="sparkle s4">✨</span>
+
+        <div class="intro">
+
+            <p class="small">A LITTLE SURPRISE FOR YOU</p>
+
+            <h1>
+                Happiest Birthday<br>
+                Dear Diya ❤️
+            </h1>
+
+            <p>Someone special deserves something special! 🥹</p>
+
+            <button class="btn" onclick="showPage(2)">
+                Open Your Surprise 💌
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 2 : LETTER + ONE PHOTO -->
+
+    <section class="page" id="page2">
+
+        <div class="letter-container">
+
+            <div class="letter">
+
+                <h1>Dear Diya! 🎀</h1>
+
+                <p>
+                    Happiest Birthday to you, Diya! ❤️
+
+                    Today is all about celebrating you and the
+                    beautiful person you are. I hope this new
+                    year of your life brings you endless happiness,
+                    success, laughter and countless reasons to smile.
+
+                    Keep shining, keep growing and never stop
+                    being yourself. May all the little wishes
+                    hidden in your heart come true.
+
+                    Thank you for being a part of my life.
+                    I hope we create many more beautiful memories
+                    together. You deserve all the happiness
+                    in this world!
+
+                    Have the most amazing birthday ever! 🥹💕
+                </p>
+
+                <div class="sign">
+                    Lots of love! 💗
+                </div>
+
+            </div>
+
+            <div class="main-photo">
+
+
+
+                <img src="https://i.postimg.cc/DzdkPrCZ/c2c1a952-a7f5-43d9-b577-9610c9597201.jpg" alt="Diya">
+
+
+
+                <p class="photo-caption">
+                    Tap this picture to see more memories 💕
+                </p>
+
+            </div>
+
+            <button class="btn" onclick="showPage(3)">
+                📸
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 3 : THREE PHOTO GALLERY -->
+
+    <section class="page" id="page3">
+
+        <div class="gallery-container">
+
+            <h1>Little Memories 💗</h1>
+
+            <p class="subtitle">
+                Three pictures, countless memories and lots of smiles! 🎀
+            </p>
+
+            <div class="gallery">
+
+
+                <!-- PAGE 3 -->
+                <img src="https://i.postimg.cc/MGK2tcg1/d7872913-36e4-4c35-861a-e0b5a0135eec.jpg" alt="Memory 1">
+                <img src="https://i.postimg.cc/mr2fVcK9/9e182088-2a3e-4a18-a553-a31a23fecc0c.jpg" alt="Memory 2">
+                <img src="https://i.postimg.cc/Z5LzrPsr/774bcf7a-d826-4024-aa2d-dabc7667a4a6.jpg" alt="Memory 3">
+
+            </div>
+
+            <div class="navigation">
+
+                <button class="back" onclick="showPage(2)">
+                    ← Previous
+                </button>
+
+                <button class="btn" onclick="showPage(4)">
+                    One Last Surprise 🎁
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PAGE 4 : FINAL SURPRISE -->
+
+    <section class="page" id="page4">
+
+        <div class="final-content">
+
+            <h1>One Last Thing, Diya! ❤️</h1>
+
+            <p>
+                Birthdays come every year, but special people
+                make every year memorable. Never forget how
+                wonderful you are. Keep smiling and keep
+                making beautiful memories! 🥹
+            </p>
+
+            <div class="gift" onclick="revealMessage()" role="button" aria-label="Open birthday gift" tabindex="0">
+                🎁
+            </div>
+
+            <p>Tap the gift for your final surprise!</p>
+
+            <div class="hidden-message" id="secret">
+
+                <h2>For You, Diya! 💌</h2>
+
+                No matter where life takes us, I hope you
+                always find happiness, love and success.
+                Stay the same wonderful person and keep
+                smiling. You are truly a favourite person! ❤️
+
+                <h2 style="margin-top:15px;">
+                    Happiest Birthday Again! 🎂
+                </h2>
+
+            </div>
+
+            <button class="back" onclick="showPage(3)">
+                ← Back to Memories
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // PAGE NAVIGATION
+
+        function showPage(number) {
+
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+
+            const selectedPage =
+                document.getElementById('page' + number);
+
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+            }
+
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+
+            if (number !== 4) {
+
+                document.getElementById('secret')
+                    .classList.remove('show');
+
+                document.querySelector('.gift').innerHTML = '🎁';
+            }
+        }
+
+
+        // FLOATING HEARTS
+
+        const heartContainer =
+            document.getElementById('heart-container');
+
+        function createHeart() {
+
+            const heart = document.createElement('span');
+
+            const hearts = [
+                '❤️',
+                '💗',
+                '💕',
+                '💖',
+                '💘',
+                '🎀'
+            ];
+
+            heart.className = 'heart';
+
+            heart.innerHTML =
+                hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + 'vw';
+
+            heart.style.fontSize =
+                (15 + Math.random() * 25) + 'px';
+
+            const duration = 5 + Math.random() * 5;
+
+            heart.style.animationDuration = duration + 's';
+
+            heartContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, duration * 1000);
+        }
+
+        setInterval(createHeart, 350);
+
+
+        // FINAL GIFT MESSAGE
+
+        function revealMessage() {
+
+            const message =
+                document.getElementById('secret');
+
+            message.classList.add('show');
+
+            document.querySelector('.gift').innerHTML = '💝';
+        }
+
+
+        // KEYBOARD SUPPORT
+
+        document.querySelector('.gift').addEventListener(
+            'keydown',
+            function (event) {
+
+                if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    revealMessage();
+                }
+            }
+        );
+
+    </script>
+
+</body>
+
+</html>
